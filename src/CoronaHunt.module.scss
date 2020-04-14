@@ -1,0 +1,199 @@
+@import '../../assets/styles/abstracts/variables';
+
+.container {
+   @keyframes slideIn {
+      from {
+         transform: scaleX(0.5);
+         opacity: 0;
+      } to {
+         transform: scaleX(1);
+         opacity: 1;
+      }
+   }
+
+   $virus-size: 50px;
+   $stats-height: 100px;
+   $board-bg: #91d7ff;
+   $border-color: #dbdbdb;
+   $font-color: #ffffff;
+   $first-color: #263f4d;
+   $second-color: #1f5b79;
+   $third-color: #174b64;
+
+   position: fixed;
+   top: $ocean-nav-height;
+   right: 0;
+   bottom: 0;
+   left: $ocean-sidebar-width;
+   width: calc(100vw - #{$ocean-sidebar-width});
+   height: calc(100vh - #{$ocean-nav-height});
+   display: flex;
+   flex-direction: column;
+   z-index: 999;
+   color: $font-color;
+   font-weight: bold;
+   text-transform: uppercase;
+   text-shadow: 0px 0px 6px rgba(0, 0, 0, 1);
+
+   button {
+      color: $font-color;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: $first-color;
+      padding: 14px;
+      border: 1px solid $border-color;
+      display: block;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-shadow: 0px 0px 6px rgba(0, 0, 0, 1);
+
+      &.mainButton{
+         font-size: 1.3rem;
+         animation-name: slideIn;
+         animation-duration: .2s;
+         animation-timing-function: ease-in-out;
+         animation-fill-mode: forwards;
+      }
+
+      &:hover,
+      &:focus {
+         font-weight: 900;
+         letter-spacing: 5px;
+         background: $second-color;
+         text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+      }
+
+      &:focus {
+         background: $third-color;
+      }
+
+      &:disabled {
+         background-color: #5a5a5a;
+         color: #c5c5c5;
+         text-shadow: none;
+         &:hover {
+            color: #b1b1b1;
+            background-color: #464646;
+            text-shadow: none;
+         }
+      }
+   }
+
+   .border {
+      position: absolute;
+      width: 20px;
+      height: calc(100% - #{$stats-height});
+      background-color: transparent;
+      z-index: 2000;
+
+      &.borderLeft {
+         left: 0;
+      }
+
+      &.borderRight {
+         right: 0;
+      }
+   }
+
+   .shootingBoard {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+      position: relative;
+      background: $board-bg;
+      cursor: url('../../assets/images/crosshair.svg') 25 25, pointer;
+
+      .virus {
+         @keyframes fallingVirus {
+            from {
+               transform: translateY(0);
+            } to {
+               transform: translateY(calc(100vh - #{$stats-height} - #{$virus-size}));
+            }
+         }
+
+         position: absolute;
+         top: calc(-#{$virus-size} - 15px);
+         height: $virus-size;
+         width: $virus-size;
+         animation-name: fallingVirus;
+         animation-iteration-count: 1;
+         animation-fill-mode: backwards;
+         animation-timing-function: linear;
+
+         -webkit-touch-callout: none;
+         -webkit-user-select: none;
+         -moz-user-select: none;
+         -ms-user-select: none;
+         user-select: none;
+
+         img {
+            $virus-bg-color: #ff3300;
+
+            height: inherit;
+            width: inherit;
+            transition: all .1s ease;
+            border-radius: $virus-size;
+
+            &:hover {
+               background: rgba($virus-bg-color, 0.45);
+               box-shadow: 0px 0px 15px rgba($virus-bg-color, 1);
+            }
+         }
+      }
+   }
+
+   .stats {
+      width: 100%;
+      height: $stats-height;
+      display: flex;
+      z-index: 999;
+      background-color: $first-color;
+      box-shadow: 0px 0px 10px $first-color;
+
+      > div {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         border-left: 4px solid $border-color;
+
+         &:last-child {
+            border-right: 4px solid $border-color;
+         }
+      }
+
+      .controls {
+         min-width: 400px;
+
+         button {
+            &:first-child {
+               margin-right: 5px;
+            }
+
+            &:last-child {
+               margin-left: 5px;
+            }
+         }
+      }
+
+      .statsElement {
+         flex: 1;
+         flex-direction: column;
+         text-align: center;
+
+         div {
+            margin-bottom: 10px;
+         }
+      }
+   }
+
+   .endMessage {
+      border: 1px solid $border-color;
+      padding: 20px;
+      text-align: center;
+      background-color: $first-color;
+      z-index: 999;
+   }
+}
