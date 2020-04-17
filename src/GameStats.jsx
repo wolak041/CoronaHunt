@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import styles from './assets/styles/CoronaHunt.module.scss';
+import crosshair from './assets/images/crosshair.svg';
 
 function GameStats(props) {
    const { actualStage, stagesCount, health, virusesKilled} = props;
@@ -29,7 +30,10 @@ function GameStats(props) {
          </div>
          <div className={styles.statsElement}>
             <div>Viruses destroyed</div>
-            <div>{virusesKilled}</div>
+            <div className={styles.virusesKilled}>
+               <img src={crosshair} alt="crosshair" width="17" height="17"/>
+               <span>{virusesKilled}</span>
+            </div>
          </div>
       </div>
    );

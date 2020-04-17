@@ -189,6 +189,19 @@
          flex-direction: column;
          text-align: center;
 
+         .virusesKilled {
+            display: flex;
+            justify-content: center;
+
+            :first-child {
+               margin-right: 3px;
+            }
+
+            :last-child {
+               margin-left: 3px;
+            }
+         }
+
          div {
             margin-bottom: 10px;
          }
