@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { hot } from 'react-hot-loader/root';
-import PropTypes from 'prop-types';
-import styles from './CoronaHunt.module.scss';
+// import PropTypes from 'prop-types';
+import styles from './assets/styles/CoronaHunt.module.scss';
 import Virus from './Virus';
 import GameStats from './GameStats';
 
@@ -36,17 +35,17 @@ class CoronaHunt extends React.Component {
          totalViruses = totalViruses + stageViruses
       , 0);
 
-      this.bodyOverflow = document.body.style.overflow;
+      // this.bodyOverflow = document.body.style.overflow;
 
-      this.containerPosition = this.getContainerPosition();
+      // this.containerPosition = this.getContainerPosition();
 
       this.shootingBoardRef = React.createRef();
       this.crosshairRef = React.createRef();
    }
 
-   componentDidMount() {
-      document.body.style.overflow = 'hidden';
-   }
+   // componentDidMount() {
+   //    document.body.style.overflow = 'hidden';
+   // }
 
    componentDidUpdate(prevProps, prevState) {
       const { health, virusesKilled, virusesPassed, isGameLost, isStageEnded } = this.state;
@@ -55,9 +54,9 @@ class CoronaHunt extends React.Component {
       if (prevState.health !== health && health === 0) this.gameLost();
    }
 
-   componentWillUnmount() {
-      document.body.style.overflow = this.bodyOverflow;
-   }
+   // componentWillUnmount() {
+   //    document.body.style.overflow = this.bodyOverflow;
+   // }
 
    handleStartGameClick = () => {
       this.setState({ isGameStarted: true });
@@ -112,16 +111,16 @@ class CoronaHunt extends React.Component {
       if (virusesPassed + virusesKilled === virusesTillActualStage) this.setState({ isStageEnded: true });
    }
 
-   getContainerPosition() {
-      const containerWidthOffset = 20;
-      const virusSize = 50;
-      const sideBarWidth = 60;
+   // getContainerPosition() {
+   //    const containerWidthOffset = 20;
+   //    const virusSize = 50;
+   //    const sideBarWidth = 60;
 
-      const left = sideBarWidth + containerWidthOffset;
-      const right = window.innerWidth - containerWidthOffset - virusSize - sideBarWidth;
+   //    const left = sideBarWidth + containerWidthOffset;
+   //    const right = window.innerWidth - containerWidthOffset - virusSize - sideBarWidth;
 
-      return { left, right };
-   }
+   //    return { left, right };
+   // }
 
    gameLost() {
       this.setState({ isGameLost: true });
@@ -132,7 +131,7 @@ class CoronaHunt extends React.Component {
    }
 
    render() {
-      const { isGameStarted, stage, health, virusesKilled, isStageEnded, isGameLost, isGameWon, isMenuOpened } = this.state;
+      const { isGameStarted, stage, health, virusesKilled, isStageEnded, isGameLost, isGameWon } = this.state;
       const viruses = [...Array(this.stages[stage][0]).keys()]
 
       return (
@@ -148,7 +147,7 @@ class CoronaHunt extends React.Component {
                      <Virus
                         virusId={virusId}
                         stage={stage}
-                        containerPosition={this.containerPosition}
+                        // containerPosition={this.containerPosition}
                         animationProperties={{
                            maxDelay: this.stages[stage][1],
                            minDuration: this.stages[stage][2],
@@ -186,7 +185,7 @@ class CoronaHunt extends React.Component {
                }
             </div>
             <GameStats
-               handleExitGameClick={this.props.handleExitGameClick}
+               // handleExitGameClick={this.props.handleExitGameClick}
                health={health}
                actualStage={stage + 1}
                stagesCount={this.stages.length}
@@ -198,8 +197,8 @@ class CoronaHunt extends React.Component {
    }
 }
 
-CoronaHunt.propTypes = {
-   handleExitGameClick: PropTypes.func
-};
+// CoronaHunt.propTypes = {
+//    handleExitGameClick: PropTypes.func
+// };
 
-export default hot(CoronaHunt);
+export default CoronaHunt;

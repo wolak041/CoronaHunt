@@ -1,4 +1,4 @@
-@import '../../assets/styles/abstracts/variables';
+// @import '../../assets/styles/abstracts/variables';
 
 .container {
    @keyframes slideIn {
@@ -21,16 +21,21 @@
    $third-color: #174b64;
 
    position: fixed;
-   top: $ocean-nav-height;
+   // top: $ocean-nav-height;
+   top: 0;
    right: 0;
    bottom: 0;
-   left: $ocean-sidebar-width;
-   width: calc(100vw - #{$ocean-sidebar-width});
-   height: calc(100vh - #{$ocean-nav-height});
+   left: 0;
+   // left: $ocean-sidebar-width;
+   // width: calc(100vw - #{$ocean-sidebar-width});
+   // height: calc(100vh - #{$ocean-nav-height});
+   width: 100vw;
+   height: 100vh;
    display: flex;
    flex-direction: column;
    z-index: 999;
    color: $font-color;
+   font-family: 'Courier New', Courier;
    font-weight: bold;
    text-transform: uppercase;
    text-shadow: 0px 0px 6px rgba(0, 0, 0, 1);
@@ -165,17 +170,18 @@
       }
 
       .controls {
-         min-width: 400px;
+         // min-width: 400px;
+         min-width: 300px;
 
-         button {
-            &:first-child {
-               margin-right: 5px;
-            }
+         // button {
+         //    &:first-child {
+         //       margin-right: 5px;
+         //    }
 
-            &:last-child {
-               margin-left: 5px;
-            }
-         }
+         //    &:last-child {
+         //       margin-left: 5px;
+         //    }
+         // }
       }
 
       .statsElement {
