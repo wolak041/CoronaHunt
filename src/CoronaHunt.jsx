@@ -31,9 +31,9 @@ class CoronaHunt extends React.Component {
       ];
 
       this.virusesTotal = this.stages
-      .reduce((totalViruses, [stageViruses]) =>
-         totalViruses = totalViruses + stageViruses
-      , 0);
+         .reduce((totalViruses, [stageViruses]) =>
+            totalViruses = totalViruses + stageViruses
+            , 0);
 
       // this.bodyOverflow = document.body.style.overflow;
 
@@ -76,7 +76,13 @@ class CoronaHunt extends React.Component {
    }
 
    handleRemoveVirus = () => {
-      this.setState((prevState) => ({ virusesKilled: prevState.virusesKilled + 1 }), this.endStage);
+      this.setState((prevState) => {
+         if (!prevState.isGameLost) {
+            return {
+               virusesKilled: prevState.virusesKilled + 1
+            }
+         }
+      }, this.endStage);
    }
 
    handleAnimationEnd = () => {
@@ -85,8 +91,9 @@ class CoronaHunt extends React.Component {
             return {
                virusesPassed: prevState.virusesPassed + 1,
                health: prevState.health - 20
+            }
          }
-      }}, this.endStage);
+      }, this.endStage);
    }
 
    handleNextStage = () => {
@@ -106,7 +113,7 @@ class CoronaHunt extends React.Component {
          .splice(0, stage + 1)
          .reduce((totalViruses, [stageViruses]) =>
             totalViruses = totalViruses + stageViruses
-         , 0);
+            , 0);
 
       if (virusesPassed + virusesKilled === virusesTillActualStage) this.setState({ isStageEnded: true });
    }

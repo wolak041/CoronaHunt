@@ -115,7 +115,7 @@
             from {
                transform: translateY(0);
             } to {
-               transform: translateY(calc(100vh - #{$stats-height} - #{$virus-size}));
+               transform: translateY(calc(100vh - #{$stats-height}));
             }
          }
 
