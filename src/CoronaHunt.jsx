@@ -8,11 +8,13 @@ class CoronaHunt extends React.Component {
    constructor(props) {
       super(props);
 
+      this.maxHealth = 5;
+
       this.state = {
          stage: 0,
          virusesKilled: 0,
          virusesPassed: 0,
-         health: 100,
+         health: this.maxHealth,
          isGameStarted: false,
          isStageEnded: false,
          isGameLost: false,
@@ -24,10 +26,10 @@ class CoronaHunt extends React.Component {
          [9, 2, 5, 8],
          [10, 3, 5, 9],
          [15, 8, 5, 10],
-         [35, 20, 5, 14],
-         [40, 25, 5, 15],
-         [50, 30, 5, 16],
-         [60, 35, 5, 17],
+         [34, 20, 5, 14],
+         [40, 25, 5, 14],
+         [50, 30, 5, 14],
+         [60, 35, 5, 14],
       ];
 
       this.virusesTotal = this.stages
@@ -67,7 +69,7 @@ class CoronaHunt extends React.Component {
          stage: 0,
          virusesKilled: 0,
          virusesPassed: 0,
-         health: 100,
+         health: this.maxHealth,
          isGameStarted: false,
          isStageEnded: false,
          isGameLost: false,
@@ -90,7 +92,7 @@ class CoronaHunt extends React.Component {
          if (this.state.health > 0) {
             return {
                virusesPassed: prevState.virusesPassed + 1,
-               health: prevState.health - 20
+               health: prevState.health - 1
             }
          }
       }, this.endStage);
@@ -193,6 +195,7 @@ class CoronaHunt extends React.Component {
             </div>
             <GameStats
                // handleExitGameClick={this.props.handleExitGameClick}
+               maxHealth={this.maxHealth}
                health={health}
                actualStage={stage + 1}
                stagesCount={this.stages.length}

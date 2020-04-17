@@ -188,6 +188,14 @@
          flex: 1;
          flex-direction: column;
          text-align: center;
+         
+         .hearts {
+            display: flex;
+
+            svg {
+               margin: 0 3px;
+            }
+         }
 
          .virusesKilled {
             display: flex;
