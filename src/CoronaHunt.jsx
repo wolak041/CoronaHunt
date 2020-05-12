@@ -1,5 +1,4 @@
 import * as React from 'react';
-// import PropTypes from 'prop-types';
 import styles from './assets/styles/CoronaHunt.module.scss';
 import Virus from './Virus';
 import GameStats from './GameStats';
@@ -37,17 +36,9 @@ class CoronaHunt extends React.Component {
             totalViruses = totalViruses + stageViruses
             , 0);
 
-      // this.bodyOverflow = document.body.style.overflow;
-
-      // this.containerPosition = this.getContainerPosition();
-
       this.shootingBoardRef = React.createRef();
       this.crosshairRef = React.createRef();
    }
-
-   // componentDidMount() {
-   //    document.body.style.overflow = 'hidden';
-   // }
 
    componentDidUpdate(prevProps, prevState) {
       const { health, virusesKilled, virusesPassed, isGameLost, isStageEnded } = this.state;
@@ -55,10 +46,6 @@ class CoronaHunt extends React.Component {
       if (!isGameLost && prevState.isStageEnded !== isStageEnded && this.virusesTotal === virusesKilled + virusesPassed) this.gameWon();
       if (prevState.health !== health && health === 0) this.gameLost();
    }
-
-   // componentWillUnmount() {
-   //    document.body.style.overflow = this.bodyOverflow;
-   // }
 
    handleStartGameClick = () => {
       this.setState({ isGameStarted: true });
@@ -120,17 +107,6 @@ class CoronaHunt extends React.Component {
       if (virusesPassed + virusesKilled === virusesTillActualStage) this.setState({ isStageEnded: true });
    }
 
-   // getContainerPosition() {
-   //    const containerWidthOffset = 20;
-   //    const virusSize = 50;
-   //    const sideBarWidth = 60;
-
-   //    const left = sideBarWidth + containerWidthOffset;
-   //    const right = window.innerWidth - containerWidthOffset - virusSize - sideBarWidth;
-
-   //    return { left, right };
-   // }
-
    gameLost() {
       this.setState({ isGameLost: true });
    }
@@ -156,7 +132,6 @@ class CoronaHunt extends React.Component {
                      <Virus
                         virusId={virusId}
                         stage={stage}
-                        // containerPosition={this.containerPosition}
                         animationProperties={{
                            maxDelay: this.stages[stage][1],
                            minDuration: this.stages[stage][2],
@@ -194,7 +169,6 @@ class CoronaHunt extends React.Component {
                }
             </div>
             <GameStats
-               // handleExitGameClick={this.props.handleExitGameClick}
                maxHealth={this.maxHealth}
                health={health}
                actualStage={stage + 1}
@@ -206,9 +180,5 @@ class CoronaHunt extends React.Component {
       );
    }
 }
-
-// CoronaHunt.propTypes = {
-//    handleExitGameClick: PropTypes.func
-// };
 
 export default CoronaHunt;

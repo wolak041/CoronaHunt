@@ -10,11 +10,6 @@ function GameStats(props) {
    return (
       <div className={styles.stats}>
          <div className={styles.controls}>
-            {/* <div>
-               <button
-                  onClick={props.handleExitGameClick}
-                  >Exit game</button>
-            </div> */}
             <div>
                <button
                   onClick={props.handleRestartGameClick}
@@ -50,7 +45,6 @@ function GameStats(props) {
 }
 
 GameStats.propTypes = {
-   // handleExitGameClick: PropTypes.func,
    handleRestartGameClick: PropTypes.func,
    maxHealth: PropTypes.number,
    health: PropTypes.number,

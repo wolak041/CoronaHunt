@@ -31,7 +31,6 @@ class Virus extends React.Component {
 
    updateVirusStyle() {
       const { maxDelay, minDuration, maxDuration } = this.props.animationProperties;
-      // const { left, right } = this.props.containerPosition;
       const virusSize = 50;
       const containerWidthOffset = 20;
       const left = containerWidthOffset;
@@ -67,10 +66,6 @@ Virus.propTypes = {
    handleAnimationEnd: PropTypes.func,
    virusId: PropTypes.number,
    stage: PropTypes.number,
-   // containerPosition: PropTypes.shape({
-   //    left: PropTypes.number,
-   //    right: PropTypes.number
-   // }),
    animationProperties: PropTypes.shape({
       maxDelay: PropTypes.number,
       minDuration: PropTypes.number,
